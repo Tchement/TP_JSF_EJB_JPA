@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view locale="#{languageBean.local}"></f:view>
+
+<h:head>
+	<title>#{msg.ident3}</title>
+</h:head>
+
+<h:body>
+
+	<!-- Insertion du header -->
+	<ui:insert name="header">
+		<ui:include src="/Template/menu.xhtml"></ui:include>
+	</ui:insert>
+
+	<!-- Affichage des utilisateurs -->
+	<div align="center">
+		<h1>#{msg.ident4}</h1>
+		<h:form>
+			<p:dataTable var="u" value="#{sessionScope.listeUsers}" rows="10"
+				paginator="true" rowsPerPageTemplate="5,10,15">
+				<p:column style="text-align: center" headerText="Id">
+					<h:outputText value="#{u.id_user}" />
+				</p:column>
+
+				<p:column style="text-align: center" headerText="#{msg.nom}">
+					<h:outputText value="#{u.nom_user}" />
+				</p:column>
+
+				<p:column style="text-align: center" headerText="#{msg.prenom}">
+					<h:outputText value="#{u.prenom_user}" />
+				</p:column>
+
+				<p:column style="text-align: center" headerText="#{msg.dn}">
+					<h:outputText value="#{u.dateNaissance}" />
+				</p:column>
+				<p:column style="text-align: center" headerText="Edition">
+					<p:commandButton update="@all" icon="ui-icon-trash"
+						title="#{msg.suppr2}" action="#{userMB.deleteUser()}">
+						<f:setPropertyActionListener value="#{u}" target="#{userMB.user}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</div>
+
+	<!-- Insertion du footer -->
+	<ui:insert name="footer">
+		<ui:include src="/Template/footer.xhtml"></ui:include>
+	</ui:insert>
+
+</h:body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view locale="#{languageBean.local}"></f:view>
+
+<h:body>
+
+	<ui:composition>
+		<h:form>
+			<p:commandButton value="#{msg.accueil}" action="accueil"
+				update="@all" />
+
+			<p:commandButton value="#{msg.ajout}" action="ajouterUtilisateur"
+				update="@all" />
+
+			<p:commandButton value="#{msg.modifier}" action="modifierUtilisateur"
+				update="@all" />
+
+			<p:commandButton value="#{msg.suppr}" action="supprimerUtilisateur"
+				update="@all" />
+			<p:commandButton style="float:right" value="#{msg.deconnexion}"
+				action="#{agentMB.seDeconnecter}" />
+
+			<div align="right">
+				<h:panelGrid columns="2">
+			#{msg.language}
+					<h:selectOneMenu value="#{languageBean.localCode}"
+						onchange="submit()"
+						valueChangeListener="#{languageBean.changerLoc}">
+						<f:selectItems value="#{languageBean.localites}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+			</div>
+
+			<p:separator></p:separator>
+		</h:form>
+	</ui:composition>
+
+</h:body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>#{msg.ident1}</title>
+</h:head>
+
+<body>
+
+	<!-- Menu de changement de langue -->
+	<div align="right">
+		<h:form>
+			<p:growl id="messages" showDetail="false" />
+			<h:panelGrid columns="2">
+		#{msg.language}
+		<h:selectOneMenu value="#{languageBean.localCode}" onchange="submit()"
+					valueChangeListener="#{languageBean.changerLoc}">
+					<f:selectItems value="#{languageBean.localites}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+		</h:form>
+	</div>
+
+	<!-- Formulaire d'authentification -->
+	<div align="center">
+		<h1>#{msg.ident2}</h1>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg.mail} " />
+				<h:inputText value="#{agentMB.login}" required="true" />
+
+				<h:outputText value="#{msg.mdp} " />
+				<h:inputSecret value="#{agentMB.password}" required="true" />
+
+				<h:commandButton value="#{msg.valider}" action="#{agentMB.isExist}"></h:commandButton>
+			</h:panelGrid>
+		</h:form>
+	</div>
+
+</body>
+
+</html>
